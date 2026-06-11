@@ -1,0 +1,61 @@
+<%# app/views/layouts/_flash.html.erb %>
+<div id="flash-container" aria-live="polite" aria-atomic="true">
+    <% flash.each do |type, message| %>
+        <% next if message.blank? %>
+        <% klass = case type.to_s %>
+                         <% when 'notice' then 'flash-notice' %>
+                         <% when 'success' then 'flash-success' %>
+                         <% when 'alert' then 'flash-alert' %>
+                         <% when 'error' then 'flash-error' %>
+                         <% else 'flash-notice' %>
+                         <% end %>
+        <div class="flash <%= klass %>" role="status" data-auto-dismiss="true" data-timeout="4500">
+            <div class="flash-message"><%= message %></div>
+            <button type="button" class="flash-close" aria-label="Dismiss">&times;</button>
+        </div>
+    <% end %>
+</div>
+
+<script>
+    (function () {
+        function closeFlash(el) {
+            el.classList.add('flash-hidden');
+            // remove from DOM after transition
+            el.addEventListener('transitionend', function onEnd() {
+                el.removeEventListener('transitionend', onEnd);
+                if (el.parentNode) el.parentNode.removeChild(el);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.getElementById('flash-container');
+            if (!container) return;
+
+            // attach close handlers
+            container.querySelectorAll('.flash').forEach(function (el) {
+                var btn = el.querySelector('.flash-close');
+                if (btn) {
+                    btn.addEventListener('click', function () { closeFlash(el); });
+                }
+
+                // auto dismiss
+                var auto = el.dataset.autoDismiss;
+                var timeout = parseInt(el.dataset.timeout || 4000, 10);
+                if (auto === 'true') {
+                    // start timer
+                    var timer = setTimeout(function () { closeFlash(el); }, timeout);
+
+                    // pause on hover / focus
+                    el.addEventListener('mouseenter', function () { clearTimeout(timer); });
+                    el.addEventListener('focusin', function () { clearTimeout(timer); });
+                    el.addEventListener('mouseleave', function () {
+                        timer = setTimeout(function () { closeFlash(el); }, 1000);
+                    });
+                    el.addEventListener('focusout', function () {
+                        timer = setTimeout(function () { closeFlash(el); }, 1000);
+                    });
+                }
+            });
+        });
+    })();
+</script>
