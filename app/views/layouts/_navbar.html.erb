@@ -3,7 +3,7 @@
   <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block"></label>
   <div class="collapse-title navbar">
     <div class="navbar-start">
-        <a class="btn btn-ghost text-xl">
+        <%= link_to root_path, class: "btn btn-ghost text-xl" do %>
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/25 shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-primary">
@@ -13,7 +13,7 @@
                 </div>
                 <span class="text-xl font-bold tracking-tight text-base-content">Jestem <span class="text-primary">Tu</span></span>
             </div>
-        </a>
+        <% end %>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
@@ -35,7 +35,7 @@
                 tabindex="-1"
                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
-                  <%= button_to "Wyloguj się", session_path, method: :delete %>
+                  <%= button_to "Wyloguj się", session_path, method: :delete, class: "w-full", form: {class: "contents"}  %>
                 </li>
               </ul>
             </div>
