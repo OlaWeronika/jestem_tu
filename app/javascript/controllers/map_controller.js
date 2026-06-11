@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import L from "leaflet"
 
 export default class extends Controller {
   static targets = [ "lat", "lng" ]
@@ -19,10 +20,10 @@ export default class extends Controller {
   // Mapa dla widoku wyświetlającego wszystkie miejsca
   initializeViewMap() {
     // 1. Inicjalizacja mapy na całym świecie
-    this.map = window.L.map('map').setView([20, 0], 2)
+    this.map = L.map('map').setView([20, 0], 2)
 
     // 2. Dodanie warstwy mapy (OpenStreetMap)
-    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
     }).addTo(this.map)
@@ -42,7 +43,7 @@ export default class extends Controller {
       return
     }
 
-    const bounds = window.L.latLngBounds([])
+    const bounds = L.latLngBounds([])
     let hasValidCoordinates = false
 
     places.forEach(place => {
@@ -55,7 +56,7 @@ export default class extends Controller {
         const color = isOwnPlace ? '#22c55e' : '#ef4444' // green for own, red for others
 
         // Create custom icon
-        const icon = window.L.icon({
+        const icon = L.icon({
           iconUrl: this.getMarkerIconUrl(color),
           iconSize: [32, 41],
           iconAnchor: [16, 41],
@@ -63,7 +64,7 @@ export default class extends Controller {
         })
 
         // Add marker
-        const marker = window.L.marker([lat, lng], { icon: icon })
+        const marker = L.marker([lat, lng], { icon: icon })
           .bindPopup(this.createPopupContent(place, isOwnPlace))
           .addTo(this.map)
 
@@ -124,7 +125,7 @@ export default class extends Controller {
   // ========== Mapa dla formularza ==========
 
   initializeFormMap() {
-    if (!window.L) {
+    if (!L) {
       console.error("Leaflet not loaded")
       return
     }
@@ -141,15 +142,15 @@ export default class extends Controller {
       const nLng = Number(lng) || defaultLng
 
       // 2. Inicjalizacja mapy
-      this.map = window.L.map('map').setView([nLat, nLng], defaultZoom)
+      this.map = L.map('map').setView([nLat, nLng], defaultZoom)
 
       // 3. Dodanie warstwy mapy (OpenStreetMap)
-      window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(this.map)
 
       // 4. Stworzenie markera
-      this.marker = window.L.marker([nLat, nLng], {
+      this.marker = L.marker([nLat, nLng], {
         draggable: true // Użytkownik może też przeciągać marker
       }).addTo(this.map)
 
