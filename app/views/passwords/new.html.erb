@@ -1,0 +1,26 @@
+
+<div class="flex-1 flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 bg-base-200">
+  <% if alert = flash[:alert] %>
+    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+  <% end %>
+
+  <% if notice = flash[:notice] %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+  <h3 class="text-lg font-bold">Zapomniałeś/aś hasła?</h3>
+  <%= form_with url: passwords_path, class: "contents" do |form| %>
+    <div class="my-5">
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Podaj adres email", value: params[:email_address], class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+      <div class="inline">
+        <%= form.submit "Wyślij instrukcje resetowania hasła", class: "btn btn-primary" %>
+      </div>
+    </div>
+
+    <div class="mt-10 text-sm text-gray-500">
+      <%= link_to "Powrót do strony głównej", root_path, data: { turbo_frame: "_top" }, class: "link link-primary", onclick: "registration_modal && registration_modal.close()" %>
+    </div>
+  <% end %>
+
