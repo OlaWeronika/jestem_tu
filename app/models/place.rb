@@ -13,7 +13,6 @@ class Place < ApplicationRecord
   private
 
   def geocode_address
-    debugger
     geocoded = Geocoder.search([ latitude, longitude ]).first
     if geocoded
       self.address = geocoded.address
