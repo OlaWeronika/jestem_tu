@@ -1,0 +1,57 @@
+<%= form_with(model: @place, data: { controller: "map" }, class: "contents") do |form| %>
+  <div class="card w-full bg-base-100 shadow-lg p-6 space-b-6">
+    <h2 class="text-2xl font-semibold">Dodaj nowe miejsce</h2>
+
+    <div class="form-control flex flex-row gap-4">
+        
+        <div>
+            <label class="label">
+                <span class="label-text">Kiedy odwiedzono?</span>
+            </label>
+            <%= form.date_field :visited_on, class: "input input-bordered w-full", required: true %>
+        </div>
+        
+        <div>
+            <label class="label">
+                <span class="label-text">Nazwa miejsca</span>
+            </label>
+            <%= form.text_field :name, class: "input input-bordered w-full", required: true %>
+        </div>
+    </div>
+
+    <div class="alert alert-info my-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span>Kliknij na mapie, aby ustawić szerokość i długość geograficzną miejsca.</span>
+    </div>
+
+    <div id="map" class="h-96 w-full rounded-lg border border-base-200"></div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Szerokość geograficzna (Lat)</span>
+        </label>
+        <%= form.text_field :latitude, data: { map_target: "lat" }, class: "input input-bordered w-full" %>
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Długość geograficzna (Lng)</span>
+        </label>
+        <%= form.text_field :longitude, data: { map_target: "lng" }, class: "input input-bordered w-full" %>
+      </div>
+    </div>
+
+    <div class="form-control mt-4">
+      <label class="label">
+        <span class="label-text">Opis miejsca</span>
+      </label>
+      <%= form.text_area :notes, class: "textarea textarea-bordered w-full border border-base-200" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= form.submit "Zapisz miejsce", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
