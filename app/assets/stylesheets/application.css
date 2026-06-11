@@ -8,3 +8,60 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+#flash-container {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: none; /* allow clicks only on message elements */
+}
+
+.flash {
+    pointer-events: auto;
+    min-width: 240px;
+    max-width: 90vw;
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms ease, transform 300ms ease;
+    font-size: 0.95rem;
+}
+
+.flash-hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+}
+
+.flash .flash-message {
+    flex: 1;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.flash .flash-close {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+/* theme colors */
+.flash-notice { background: #2f855a; }   /* green */
+.flash-success { background: #2b6cb0; }  /* blue */
+.flash-alert { background: #d69e2e; }    /* yellow */
+.flash-error { background: #c53030; }    /* red */

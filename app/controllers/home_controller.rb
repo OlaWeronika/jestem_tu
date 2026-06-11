@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   def index
     unless authenticated?
       redirect_to start_path
+    else
+      @all_places = Place.all
+      @current_user_place_ids = Current.user.places.pluck(:id)
     end
   end
 

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "/start", to: "home#start"
+  resources :places
 end

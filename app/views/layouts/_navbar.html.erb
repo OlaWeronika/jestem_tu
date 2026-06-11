@@ -1,0 +1,52 @@
+<div class="max-lg:collapse bg-base-100 lg:mb-10 shadow-sm w-full rounded-md bg-base-100 shadow-sm">
+  <input id="navbar-1-toggle" class="peer hidden" type="checkbox" />
+  <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block"></label>
+  <div class="collapse-title navbar">
+    <div class="navbar-start">
+        <a class="btn btn-ghost text-xl">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/25 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-primary">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-base-content">Jestem <span class="text-primary">Tu</span></span>
+            </div>
+        </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+            <%= link_to "Dodaj miejsce!", new_place_path, class: "btn btn-ghost" %>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+        <div class="flex gap-2">
+            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
+                </div>
+              </div>
+              <ul
+                tabindex="-1"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li>
+                  <%= button_to "Wyloguj się", session_path, method: :delete %>
+                </li>
+              </ul>
+            </div>
+          </div>
+    </div>
+
+  </div>
+
+  <div class="collapse-content lg:hidden z-1">
+    <ul class="menu">
+        <li><button>Dodaj miejsce!</button></li>
+    </ul>
+  </div>
+</div>

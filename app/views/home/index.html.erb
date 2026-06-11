@@ -1,0 +1,42 @@
+<div class="flex-1 flex flex-col p-4 md:p-8 bg-base-100">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-base-content mb-2">Moja mapa podróży</h1>
+    <p class="text-base-content/60">Twoje miejsca zaznaczam na zielono, pozostałe na czerwono</p>
+  </div>
+
+  <div class="flex-1 rounded-lg overflow-hidden border border-base-300 shadow-lg"
+       data-controller="map"
+       data-map-places-value='<%= @all_places.to_json(only: [:id, :name, :latitude, :longitude, :address, :notes, :user_id, :visited_on], methods: :user_email) %>'
+       data-map-current-user-places-value='<%= @current_user_place_ids.to_json %>'>
+    <div id="map" style="height: 100%; min-height: 500px;"></div>
+  </div>
+
+  <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="flex items-center gap-3 p-4 bg-success/10 rounded-lg border border-success/30">
+      <div class="w-4 h-4 rounded-full bg-success"></div>
+      <span class="text-sm font-medium text-base-content">Moje miejsca</span>
+    </div>
+    <div class="flex items-center gap-3 p-4 bg-error/10 rounded-lg border border-error/30">
+      <div class="w-4 h-4 rounded-full bg-error"></div>
+      <span class="text-sm font-medium text-base-content">Miejsca innych użytkowników</span>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-xl font-bold text-base-content mb-4">Statystyka</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="p-4 bg-base-200 rounded-lg">
+        <div class="text-2xl font-bold text-primary"><%= @current_user_place_ids.count %></div>
+        <div class="text-sm text-base-content/60 mt-1">Twoich miejsc</div>
+      </div>
+      <div class="p-4 bg-base-200 rounded-lg">
+        <div class="text-2xl font-bold text-error"><%= @all_places.count - @current_user_place_ids.count %></div>
+        <div class="text-sm text-base-content/60 mt-1">Miejsc innych</div>
+      </div>
+      <div class="p-4 bg-base-200 rounded-lg">
+        <div class="text-2xl font-bold text-info"><%= @all_places.count %></div>
+        <div class="text-sm text-base-content/60 mt-1">Razem miejsc</div>
+      </div>
+    </div>
+  </div>
+</div>
