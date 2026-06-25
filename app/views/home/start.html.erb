@@ -23,7 +23,7 @@
                   autocomplete: "username",
                   placeholder: "Adres e-mail",
                   value: params[:email_address],
-                  class: "input input-bordered w-full" %>
+                  class: "input input-bordered input-sm md:input-md lg:input-lg w-full" %>
           </div>
 
           <div class="form-control w-full">
@@ -33,7 +33,7 @@
                   autocomplete: "current-password",
                   placeholder: "••••••••",
                   maxlength: 72,
-                  class: "input input-bordered w-full" %>
+                  class: "input input-bordered input-sm md:input-md lg:input-lg w-full" %>
           </div>
 
           <%= f.submit "Zaloguj się", class: "btn btn-primary w-full mt-2" %>
@@ -48,7 +48,7 @@
           <form method="dialog">
           <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
-          <%= turbo_frame_tag "registration_modal", src: new_registration_path, loading: :lazy do %>
+          <%= turbo_frame_tag "registration", src: new_registration_path, loading: :lazy do %>
           <span class="loading loading-dots loading-md"></span>
           <% end %>
       </div>
