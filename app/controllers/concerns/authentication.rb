@@ -1,3 +1,7 @@
+# Moduł do weryfikacji użytkownika, wygenerowany domyślnie poprzez `rails g authentication`.
+# Zawiera metody pomocnicze do zarządzania sesjami, weryfikacji statusu zalogowania oraz przekierowań po uwierzytelnieniu.
+# Wymusza autoryzację dla wszystkich akcji kontrolerów, które go zawierają, z możliwością selektywnego wyłączenia tego wymogu.
+
 module Authentication
   extend ActiveSupport::Concern
 

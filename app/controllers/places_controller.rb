@@ -1,12 +1,16 @@
+# Kontroler do zarządzania miejscami.
 class PlacesController < ApplicationController
+  # GET /places
   def index
     @places = Current.user.places
   end
 
+  # GET /places/new
   def new
     @place = Current.user.places.build
   end
 
+  # POST /places
   def create
     @place = Current.user.places.build(place_params)
     if @place.save
@@ -16,6 +20,7 @@ class PlacesController < ApplicationController
     end
   end
 
+  # GET /places/:id
   def show
     @place = Place.find(params[:id])
   end

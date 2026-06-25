@@ -1,6 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 import L from "leaflet"
 
+// Kontroller do obsługi mapy Leaflet w formularzu i widoku głównym aplikacji.
+// W zależności od obecności targetów (inputów formularza) lub values (danych miejsc), inicjalizuje odpowiednią mapę.
+// W przypadku formularza umożliwia użytkownikowi wybór lokalizacji poprzez kliknięcie na mapę lub przeciągnięcie markera.
+// W przypadku widoku głównego wyświetla wszystkie miejsca z bazy danych, kolorując markery w zależności od tego, czy należą do zalogowanego użytkownika.
+
 export default class extends Controller {
   static targets = [ "lat", "lng" ]
   static values = {

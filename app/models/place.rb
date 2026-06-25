@@ -13,6 +13,7 @@ class Place < ApplicationRecord
   private
 
   def geocode_address
+    # Ustalanie adresu na podstawie współrzędnych geograficznych (latitude, longitude) przy użyciu geokodowania odwrotnego.
     geocoded = Geocoder.search([ latitude, longitude ]).first
     if geocoded
       self.address = geocoded.address
