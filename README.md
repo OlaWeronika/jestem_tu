@@ -1,24 +1,50 @@
-# README
+# Jestem Tu
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplikacja społecznościowa do udostępniania odwiedzonych miejsc znajomym i nie tylko.
 
-Things you may want to cover:
+### Wymagania
 
-* Ruby version
+Przed uruchomieniem projektu upewnij się, że masz zainstalowane:
 
-* System dependencies
+- Ruby 4.0.5
+- Ruby on Rails (Rails 8)
+- SQLite
 
-* Configuration
+## 1. Instalacja projektu
 
-* Database creation
+1. Klon repozytorium
 
-* Database initialization
+```bash
+git clone git@github.com:OlaWeronika/jestem_tu.git
+cd jestem_tu
+```
 
-* How to run the test suite
+2. Instalacja ruby:
+> Język ruby można zainstalować na kilka sposobów, poniżej wypisano kilka z nich (mogą pojawić się błędy w instalacji, więc warto googlować):
 
-* Services (job queues, cache servers, search engines, etc.)
+- Przez RVM: https://rvm.io/ (instrukcja instalacji znajduje się w linku)
+- Przez ASDF: https://asdf-vm.com/guide/getting-started.html
+- Przez mise: https://mise.jdx.dev/
+- I każdy inny sposób znaleziony w internecie.
 
-* Deployment instructions
+3. Instalacja zależności
+```bash
+bundle install
+```
 
-* ...
+4. Utworzenie bazy danych i uruchomienie potrzebnych migracji:
+
+> Seedy załadują podstawowe dane do przykładowego uruchomienia aplikacji.
+
+```bash
+rails db:create
+rails db:migrate
+rails db:seed
+```
+
+5. Włączenie serwera deweloperskiego:
+```bash
+rails s
+```
+
+
